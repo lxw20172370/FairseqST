@@ -1,0 +1,36 @@
+./run.sh --stage 2 --stop_stage 2 --gpu_num 1 --exp_name 0508_2221_sp_train_ctc_baseline --n_average 10 --beam_size 5 --len_penalty 1.0 --max_tokens 10000 --dec_model checkpoint_best.pt --test_subset test-clean,test-other
+stage 2: ASR Decoding
+[34mRun command: 
+python /home/liuxiaowen/st/Fairseq-S2T/scripts/average_checkpoints.py
+        --inputs /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline
+        --num-epoch-checkpoints 10
+        --output /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/avg_10_checkpoint.pt [0m
+Namespace(checkpoint_upper_bound=None, inputs=['/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline'], num_epoch_checkpoints=10, num_update_checkpoints=None, output='/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/avg_10_checkpoint.pt')
+averaging checkpoints:  ['/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint42.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint41.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint40.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint39.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint38.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint37.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint36.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint35.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint34.pt', '/home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/checkpoint33.pt']
+Finished writing averaged checkpoint to /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/avg_10_checkpoint.pt
+[34mRun command: 
+python /home/liuxiaowen/st/Fairseq-S2T/fairseq_cli/generate.py
+        /home/liuxiaowen/st/data/libri_trans_sp/en
+        --config-yaml /home/liuxiaowen/st/data/libri_trans_sp/en/config_asr.yaml
+        --gen-subset test-clean
+        --task speech_to_text
+        --path /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/avg_10_checkpoint.pt
+        --results-path /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline
+        --max-tokens 10000
+        --beam 5
+        --lenpen 1.0
+        --scoring wer [0m
+[34mRun command: 
+python /home/liuxiaowen/st/Fairseq-S2T/fairseq_cli/generate.py
+        /home/liuxiaowen/st/data/libri_trans_sp/en
+        --config-yaml /home/liuxiaowen/st/data/libri_trans_sp/en/config_asr.yaml
+        --gen-subset test-other
+        --task speech_to_text
+        --path /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline/avg_10_checkpoint.pt
+        --results-path /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline
+        --max-tokens 10000
+        --beam 5
+        --lenpen 1.0
+        --scoring wer [0m
+Generate test-clean with beam=5: WER: 11.42
+Generate test-other with beam=5: WER: 21.55

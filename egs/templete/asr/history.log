@@ -1,0 +1,2 @@
+0508_1619 | 0,1,2,3 | /home/liuxiaowen/st/data/libri_trans/en | /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_1619_train_ctc_baseline 
+0508_2221 | 0,1,2,3 | /home/liuxiaowen/st/data/libri_trans_sp/en | /home/liuxiaowen/st/Fairseq-S2T/../checkpoints/libri_trans/asr/0508_2221_sp_train_ctc_baseline 
